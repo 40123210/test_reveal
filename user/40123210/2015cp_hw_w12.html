@@ -57,9 +57,168 @@
 <iframe src="40123210_cp_w12_p.html" width="500" height="300"></iframe>
 
 <p><a href="40123210_cp_w12_p.html" target="_blank">作業12投影片</a></p>
-<iframe src="https://player.vimeo.com/video/144952509" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<p>Jupyter notebook 檔案內容:</p>
+<p>猜顏色遊戲
 
-<p><p><a href="https://vimeo.com/144952509">w8_2015_11_07</a> from <a href="https://vimeo.com/user40881402">40123210</a> on <a href="https://vimeo.com">Vimeo</a>.</p></p></div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="kn">import</span> <span class="nn">random</span>
+<span class="c"># 產生標準答案</span>
+<span class="c"># 利用list數列資料型別建立顏色選項</span>
+<span class="c"># Red 紅色, White 白色, Yellow 黃色, Green 綠色, Blue 藍色, Purple 紫色, 假設顏色值不會重複</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;&#39;&#39;遊戲規則說明: 可選顏色值, </span><span class="se">\n</span><span class="s">Red 紅色 , White 白色, Yellow 黃色, Green 綠色, Blue 藍色, Purple 紫色,  </span><span class="se">\n</span><span class="s">RWYGBP, </span><span class="se">\n</span><span class="s">X  表示顏色與位置都對, O 表示顏色對, 但是位置不對.</span>
+<span class="s">&#39;&#39;&#39;</span><span class="p">)</span>
+
+<span class="n">顏色選項</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;R&quot;</span><span class="p">,</span> <span class="s">&quot;W&quot;</span><span class="p">,</span> <span class="s">&quot;Y&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;P&quot;</span><span class="p">]</span>
+<span class="n">標準答案</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">顏色選項</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">標準答案</span><span class="p">)</span>
+
+<span class="n">顏色字串</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+<span class="n">幾次決勝</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">猜測次數</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">遊戲進行中</span> <span class="o">=</span> <span class="k">True</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;總共有&quot;</span><span class="p">,</span> <span class="n">幾次決勝</span> <span class="o">-</span> <span class="n">猜測次數</span><span class="p">,</span> <span class="s">&quot;次機會,可以猜!&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">顏色選項</span><span class="p">)):</span>
+    <span class="n">顏色字串</span> <span class="o">+=</span> <span class="n">顏色選項</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="c"># print (顏色字串)</span>
+
+
+
+<span class="k">while</span> <span class="n">遊戲進行中</span><span class="p">:</span>
+    <span class="n">位置顏色都正確</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+    <span class="n">顏色對位置錯</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+    <span class="c">#將使用者的輸入轉為大寫英文字母</span>
+    <span class="n">使用者猜測輸入</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">&quot;請從下列顏色值中選四個, &quot;</span><span class="o">+</span><span class="n">顏色字串</span><span class="o">+</span><span class="s">&quot;: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">猜測次數</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c">#檢驗是否輸入四個顏色字母</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">使用者猜測輸入</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">標準答案</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">只能猜四個顏色, 請重猜!&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">剩下&quot;</span><span class="p">,</span> <span class="n">幾次決勝</span> <span class="o">-</span> <span class="n">猜測次數</span><span class="p">,</span> <span class="s">&quot;次機會,可以猜: &quot;</span><span class="p">)</span>
+        <span class="k">continue</span>
+    <span class="c">#檢驗是否重複選擇相同顏色</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">使用者猜測輸入</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">使用者猜測輸入</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">顏色值不能重複!&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">剩下&quot;</span><span class="p">,</span> <span class="n">幾次決勝</span> <span class="o">-</span> <span class="n">猜測次數</span><span class="p">,</span> <span class="s">&quot;次機會,可以猜: &quot;</span><span class="p">)</span>
+        <span class="k">continue</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="c">#判斷是否從顏色選項輸入</span>
+        <span class="k">if</span> <span class="n">使用者猜測輸入</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">顏色選項</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">只能從下列顏色選項中輸入!&quot;</span><span class="p">,</span> <span class="n">顏色選項</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">剩下&quot;</span><span class="p">,</span> <span class="n">幾次決勝</span><span class="o">-</span><span class="n">猜測次數</span><span class="p">,</span> <span class="s">&quot;次機會,可以猜: &quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+    <span class="k">if</span> <span class="n">位置顏色都正確</span> <span class="o">!=</span> <span class="s">&quot;XXXX&quot;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">使用者猜測輸入</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">標準答案</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">位置顏色都正確</span> <span class="o">+=</span> <span class="s">&quot;X&quot;</span>
+            <span class="k">if</span> <span class="n">使用者猜測輸入</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">標準答案</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">and</span> <span class="n">使用者猜測輸入</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">標準答案</span><span class="p">:</span>
+                <span class="n">顏色對位置錯</span> <span class="o">+=</span> <span class="s">&quot;O&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">位置顏色都正確</span> <span class="o">+</span> <span class="n">顏色對位置錯</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">位置顏色都正確</span> <span class="o">==</span> <span class="s">&quot;XXXX&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">猜測次數</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s">&quot;太神奇了, 1 次就猜對!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s">&quot;還不錯...總共猜了 &quot;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">猜測次數</span><span class="p">)</span><span class="o">+</span> <span class="s">&quot;次, 終於猜對!&quot;</span><span class="p">)</span>
+        <span class="n">遊戲進行中</span> <span class="o">=</span> <span class="k">False</span>
+
+    <span class="k">if</span> <span class="n">猜測次數</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">猜測次數</span> <span class="o">&lt;</span> <span class="n">幾次決勝</span> <span class="ow">and</span> <span class="n">位置顏色都正確</span> <span class="o">!=</span> <span class="s">&quot;XXXX&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s">&quot;剩下&quot;</span><span class="p">,</span> <span class="n">幾次決勝</span> <span class="o">-</span> <span class="n">猜測次數</span><span class="p">,</span> <span class="s">&quot;次機會, 可以再猜: &quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">猜測次數</span> <span class="o">&gt;=</span> <span class="n">幾次決勝</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s">&quot;沒有猜對! 答案顏色值為: &quot;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">標準答案</span><span class="p">))</span>
+        <span class="n">遊戲進行中</span> <span class="o">=</span> <span class="k">False</span>
+
+    <span class="c"># 詢問要不要再玩</span>
+    <span class="k">while</span> <span class="n">遊戲進行中</span> <span class="o">==</span> <span class="k">False</span><span class="p">:</span>
+        <span class="n">遊戲結束詢問</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">要不要再玩 (Y/N)?&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="c"># 猜測次數歸零</span>
+        <span class="n">猜測次數</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">遊戲結束詢問</span> <span class="o">==</span> <span class="s">&quot;N&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s">&quot;歡迎再回來玩!&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">遊戲結束詢問</span> <span class="o">==</span> <span class="s">&quot;Y&quot;</span><span class="p">:</span>
+            <span class="n">遊戲進行中</span> <span class="o">=</span> <span class="k">True</span>
+            <span class="c"># 重新產生標準答案</span>
+            <span class="n">標準答案</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">顏色選項</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+            <span class="c"># print (標準答案)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s">&quot;好, 在玩一次!&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s">&quot;總共有 &quot;</span><span class="p">,</span> <span class="n">幾次決勝</span><span class="o">-</span><span class="n">猜測次數</span><span class="p">,</span> <span class="s">&quot;次機會, 可以猜!&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>遊戲規則說明: 可選顏色值, 
+Red 紅色 , White 白色, Yellow 黃色, Green 綠色, Blue 藍色, Purple 紫色,  
+RWYGBP, 
+X  表示顏色與位置都對, O 表示顏色對, 但是位置不對.
+
+[&apos;B&apos;, &apos;R&apos;, &apos;G&apos;, &apos;W&apos;]
+總共有 9 次機會,可以猜!
+請從下列顏色值中選四個, RWYGBP: RWYG
+OOO
+
+剩下 8 次機會, 可以再猜: 
+請從下列顏色值中選四個, RWYGBP: RWYB
+OOO
+
+剩下 7 次機會, 可以再猜: 
+請從下列顏色值中選四個, RWYGBP: RWYP
+OO
+
+剩下 6 次機會, 可以再猜: 
+請從下列顏色值中選四個, RWYGBP: WYGB
+XOO
+
+剩下 5 次機會, 可以再猜: 
+請從下列顏色值中選四個, RWYGBP: YGBR
+OOO
+
+剩下 4 次機會, 可以再猜: 
+請從下列顏色值中選四個, RWYGBP: WGBR
+OOOO
+
+剩下 3 次機會, 可以再猜: 
+請從下列顏色值中選四個, RWYGBP: BRGW
+XXXX
+
+還不錯...總共猜了 7次, 終於猜對!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></p>
+<iframe src="https://player.vimeo.com/video/151215207" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+<p><p><a href="https://vimeo.com/151215207">w12_2015_12_04</a> from <a href="https://vimeo.com/user40881402">40123210</a> on <a href="https://vimeo.com">Vimeo</a>.</p></p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
